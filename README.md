@@ -23,7 +23,7 @@ I started off by lazily comparing each letter in each word and comparing it to t
 Then, I decided to make it a little bit faster and stored the answer keyword in a hashset for constant time search. The issue now, was how do I make it a thorough check that encompasses all testcases? My current methodology was perfectly fine for words with distinct letters -- but what about words with less than 5 unique letters, such as "apple"? Or what about guesses with less than 5 unique letters?
 
 Well, I noticed a few patterns emerge from Wordle:
-* X always takes priority. That is to say, if the word you're looking for is "beach" and you guess "hatch", your result will be "FOOXX" -- indicating that the first "h" was a fail.
+* X always takes priority. That is to say, if the word you're looking for is "beach" and you guess "hatch", your result will be "FOFXX" -- indicating that the first "h" was a fail.
 * You will know how many instances of a letter a word has. In essence, there is always some sort of 1 to 1 mapping of letters that allows logical deductions to be made. Like the example above, we can see that only one of the "h"'s was assigned a valid state.
 
 With these in mind I implemented a two pass solution - one for the X's and one for the O's, in that order. Adjustments were made to accommodate words with less than 5 unique letters. Namely using a hashmap instead of a hashset, that also tracked letter count. Whenever a letter was encountered and processed, I would subtract it from the counter. This eliminated situations were letters were getting double counted, such as guessing "hatch" for "beach" -- without this fix, it would have been evaluated as "OOFXX".
