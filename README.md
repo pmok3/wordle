@@ -47,7 +47,7 @@ In the more complicated case where the guess has less than 5 unique letters, we 
 This process of iterating through the intermediate X/O/F strings and trimming down the remaining feasible wordset is akin to the Generalized Arc Consistency algorithm I once learned about in CSC384.
 
 For guessing, I approached it in two different ways, though there are many other valid methods to do so including linguistic analysis and so on, that I don't know about. I also mention the term "convergence" quite a fair bit in the following sections, so bear with me. All it really means is the iterative process of the guesser trimming down the wordset to a single remaining word, aka the solution.
-## Frequency Table ##
+### Frequency Table ###
 https://www3.nd.edu/~busiforc/handouts/cryptography/letterfrequencies.html
 
 Intuitively, one would expect the use of frequency tables to help guess words. After all, a word like "query" with the letters "q" and "y" is expected to appear less frequently than a word like "react". Well, Samuel Morse of the eponymous encoding protocol figured that out in the 19th Century, and procured a table for us to aid our guesses. 
@@ -56,7 +56,7 @@ One way of applying this knowledge is via a score sum, the word with the highest
 
 This idea evolved and eventually I turned to generating a frequency table using the existing wordset over applying Morse's code. I reasoned that because Morse's data was based off text he saw in his own time, his table would be better suited to words of his era. From here, creating a new frequency table from the existing wordset seemed to be the next logical step; as the guesser would have a better understanding of which words were more or less likely to appear and thus make a better informed decision from that data. For the standard wordset, this word was "alert". 
 
-## Prim's Algorithm for generating Minimal Spanning Trees ##
+### Prim's Algorithm for generating Minimal Spanning Trees ###
 https://en.wikipedia.org/wiki/Prim%27s_algorithm 
 
 Here's some food for thought.
