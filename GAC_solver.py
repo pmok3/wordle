@@ -63,7 +63,6 @@ def interlink(words):
             max_val = rank
             max_word = k
     
-    print(max_word, max_val)
     return max_word
     
 def gen_freq_table(words):
