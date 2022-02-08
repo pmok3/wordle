@@ -46,11 +46,26 @@ In the more complicated case where the guess has less than 5 unique letters, we 
 
 This process of iterating through the intermediate X/O/F strings and trimming down the remaining feasible wordset is akin to the Generalized Arc Consistency algorithm I once learned about in CSC384.
 
-For guessing, I approached it in two different ways, though there are many other valid methods to do so including linguistic analysis and so on, that I don't know about.
+For guessing, I approached it in two different ways, though there are many other valid methods to do so including linguistic analysis and so on, that I don't know about. I also mention the term "convergence" quite a fair bit in the following sections, so bear with me. All it really means is the iterative process of the guesser trimming down the wordset to a single remaining word, aka the solution.
 ## Frequency Table ##
+https://www3.nd.edu/~busiforc/handouts/cryptography/letterfrequencies.html
 
+Intuitively, one would expect the use of frequency tables to help guess words. After all, a word like "query" with the letters "q" and "y" is expected to appear less frequently than a word like "react". Well, Samuel Morse of the eponymous encoding protocol figured that out in the 19th Century, and came up with a table for us to use to guess. 
+
+One simple way of applying this knowledge is via a simple sum, the word with the highest frequency score would be chosen to use as a guess. There was a problem, though: "eerie" was always the top word, presumably for its three "E"'s. From this, I incentivized the guesser to prioritize words with unique letters and eventually, generated a frequency table using the existing wordset instead of Morse's code. That way the guesser would have a better understanding of which words were more and less likely to appear and thus make a better informed decision from that data. For the standard wordset, this word was "alert". 
 
 ## Prim's Algorithm for generating Minimal Spanning Trees ##
+https://en.wikipedia.org/wiki/Prim%27s_algorithm 
+
+Here's some food for thought.
+
+What if instead of words you were dealing with, you were dealing with a graph of nodes and edges? Each distinct word would represent a single node. And shared letters in any position would represent edges. So the words "brick" and "idler" would share an edge, but neither of the two would be connected with "jazzy". The result would be a dense graph, with each node having multiple edges. 
+
+Prim's algorithm, for the uninitiated, is essentially a way to construct a fully connected set of nodes using the minimum edge weight possible. From this algorithm I had the idea of what if we were to do the opposite; to deconstruct a fully connected set of nodes in the least number of moves? Since we know that Prim's Algorithm is a greedy based solution, I reasoned that doing the converse to greedily obtain the quickest wordset convergence would be a viable approach.
+
+To do so, I took the rank of each node, or how many edges each node possessed. An edge, defined as sharing 1 or more letter with another word.
+
+The word with the highest rank among the dataset was chosen as the most likely guess, as in the absence of future knowledge one could reasonably expect the fastest convergence using this method. For the standard wordset, this word was "arise".
 
 # Backtesting
 
