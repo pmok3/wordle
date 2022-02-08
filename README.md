@@ -63,7 +63,7 @@ Here's some food for thought.
 
 What if instead of words you were dealing with, you were dealing with a graph of nodes and edges? Each distinct word would represent a single node. And shared letters in any position would represent edges. So the words "brick" and "idler" would share an edge, but neither of the two would be connected with "jazzy". The result would be a dense graph, with each node having multiple edges. 
 
-Prim's algorithm, for the uninitiated, is essentially a way to construct a fully connected set of nodes using the minimum edge weight possible. From this algorithm I had the idea of what if we were to construct a similar spanning tree over the wordset in the fewest iterations possible; such a structure would serve to mimic a proven greedy based solution, lending to an external application of its principles.
+Prim's algorithm, for the uninitiated, is essentially a way to construct a fully connected set of nodes using the minimum edge weight possible. From this algorithm I had the idea of what if we were to construct a similar spanning tree over the wordset in the fewest iterations possible; such a structure would serve to mimic a proven greedy based solution and hopefully expedite convergence.
 
 To do so, I took the rank of each node, or how many edges each node possessed. An edge, defined as sharing 1 or more letter with another word.
 
