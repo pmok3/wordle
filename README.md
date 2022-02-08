@@ -73,6 +73,10 @@ The word with the highest rank among the dataset was chosen as the most likely g
 
 Backtesting these strategies is fairly straightforward, and I've included some base code to do so. They run on the entire wordset, and can be optimized performance wise as seen fit. For my strategies, I skipped the first compute step completely as it was a redundant calculation yielding the same "ALERT" or "ARISE" for every word.
 
+### Results ###
+For the frequency table based solver, it takes an average of 3.68 guesses over the entire wordset. For the rank based solver, it's slightly higher at 4.02.
+Nowhere near the 3.42 top score I've seen somewhere, but still respectable.
+
 # Conclusion
 
 And that's it! Feel free to try out the code for yourself, and let me know if there are any issues / improvements that I can make!
