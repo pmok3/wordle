@@ -42,7 +42,7 @@ Removing words is fairly straight forward for the most part.
 
 In the more complicated case where the guess has less than 5 unique letters, we implement a letter counter and prune words with N counts of that letter and above. 
 
-* For example, let's say that we're guessing "hatch" for the word "beach" and have received "FOOXX" as a result. In the simple F case, all words containing "h" would have been pruned from the set, which is problematic. The solution, therefore, is to recognize that the word "hatch" has two instances of the letter "h" using a counter, and now prune all words containing 2 or more "h"'s. This way we know that any remaining words have at least 1 "h", and after the X "h" pruning we know that the "h" is in its proper position.
+* For example, let's say that we're guessing "hatch" for the word "beach" and have received "FOFXX" as a result. In the simple F case, all words containing "h" would have been pruned from the set, which is problematic. The solution, therefore, is to recognize that the word "hatch" has two instances of the letter "h" using a counter, and now prune all words containing 2 or more "h"'s. This way we know that any remaining words have at least 1 "h", and after the X "h" pruning we know that the "h" is in its proper position.
 
 This process of iterating through the intermediate X/O/F strings and trimming down the remaining feasible wordset is akin to the Generalized Arc Consistency algorithm I once learned about in CSC384.
 
