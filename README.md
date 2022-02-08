@@ -7,7 +7,7 @@ Or rather, I found about this game last week and decided that one challenge a da
 Here's how I did it.
 
 # Wordle clone
-The actual Wordle game is played directly in the console. For me, most of my development takes place in Anaconda's Spyder so that's exactly where I "played" Worlde. A bit lacking in the graphics department, I know. But it gets the job done.
+The actual Wordle game is played directly in the console. For me, most of my development takes place in Anaconda's Spyder so that's exactly where I "played" Wordle. A bit lacking in the graphics department, I know. But it gets the job done.
 
 Development of "the game" itself was quite simple, and the entire section of code where the actual "game" takes place is a simple while loop that makes sure you haven't guessed incorrectly 6 times.
 
