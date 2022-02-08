@@ -29,3 +29,33 @@ Well, I noticed a few patterns emerge from Wordle:
 With these in mind I implemented a two pass solution - one for the X's and one for the O's, in that order. Adjustments were made to accommodate words with less than 5 unique letters. Namely using a hashmap instead of a hashset, that also tracked letter count. Whenever a letter was encountered and processed, I would subtract it from the counter. This eliminated situations were letters were getting double counted, such as guessing "hatch" for "beach" -- without this fix, it would have been evaluated as "OOFXX".
 
 Having a complete evaluation function in hand, it's safe to say that the wordle clone is complete. The remaining parts were word generation (I downloaded a dataset somewhere and randomly chose words from that set) and some print statements to make sure that everything was working smoothly. I also added in an encryption function that uses the mapping A -> 1, B -> 2 ... Z -> 26 to display the answer in debug situations but I've yet to use it thus far.
+
+# Solver
+
+At its core, the solver consists of a section that removes words, and a section that makes educated guesses. 
+* Note that I didn't say adds words. This is because when starting, the program is given access to all words and must choose one to guess from that linguistic superset.
+
+Removing words is fairly straight forward for the most part.
+* For the X case, we iterate through the entire wordset and prune out words that don't have letters in the matching X position.
+* For the O case, we iterate through the remaining wordset and prune out words that don't have letters in the O position, but have them in another position.
+* For the F case, it gets a bit tricky. In the simple case where the guess has 5 unique letters, words that contain any F letters are pruned. 
+
+In the more complicated case where the guess has less than 5 unique letters, we implement a letter counter and prune words with N counts of that letter and above. 
+
+* For example, let's say that we're guessing "hatch" for the word "beach" and have received "FOOXX" as a result. In the simple F case, all words containing "h" would have been pruned from the set, which is problematic. The solution, therefore, is to recognize that the word "hatch" has two instances of the letter "h" using a counter, and now prune all words containing 2 or more "h"'s. This way we know that any remaining words have at least 1 "h", and after the X "h" pruning we know that the "h" is in its proper position.
+
+This process of iterating through the intermediate X/O/F strings and trimming down the remaining feasible wordset is akin to the Generalized Arc Consistency algorithm I once learned about in CSC384.
+
+For guessing, I approached it in two different ways, though there are many other valid methods to do so including linguistic analysis and so on, that I don't know about.
+## Frequency Table ##
+
+
+## Prim's Algorithm for generating Minimal Spanning Trees ##
+
+# Backtesting
+
+Backtesting these strategies is fairly straightforward, and I've included some base code to do so. They run on the entire wordset, and can be optimized performance wise as seen fit. For my strategies, I skipped the first compute step completely as it was a redundant calculation yielding the same "ALERT" or "ARISE" for every word.
+
+# Conclusion
+
+And that's it! Feel free to try out the code for yourself, and let me know if there are any issues / improvements that I can make!
