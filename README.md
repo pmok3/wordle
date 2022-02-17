@@ -77,6 +77,8 @@ Backtesting these strategies is fairly straightforward, and I've included some b
 For the frequency table based solver, it takes an average of 3.68 guesses over the entire wordset. For the rank based solver, it's slightly higher at 4.02.
 Nowhere near the 3.42 top score I've seen somewhere, but still respectable.
 
+I've also included results of using the frequency table based solver for each starter word, raw and sorted. Turns out the best word is "TRACE"!
+
 # Conclusion
 
 And that's it! Feel free to try out the code for yourself, and let me know if there are any issues / improvements that I can make!
